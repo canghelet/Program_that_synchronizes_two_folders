@@ -33,12 +33,9 @@ print(f"SCRIPT DIRE PATH = {SCRIPT_DIR_PATH}")
 # setting up argument parser
 def get_parser():
     parser = argparse.ArgumentParser(description='Argument parser for folder synchronization script.')
-    parser.add_argument('-s', '--source', type=str, default=os.path.join(SCRIPT_DIR_PATH, 'source_dir'),
-                        help='Path to the source directory.')
-    parser.add_argument('-r', '--replica', type=str, default=os.path.join(SCRIPT_DIR_PATH, 'replica_dir'),
-                        help='Path to the replica directory.')
-    parser.add_argument('-l', '--logfile', type=str, default=os.path.join(SCRIPT_DIR_PATH, 'logfile.txt'),
-                        help='Path to logfile.')
+    parser.add_argument('-s', '--source', type=str, default=os.path.join(SCRIPT_DIR_PATH, 'source_dir'), help='Path to the source directory.')
+    parser.add_argument('-r', '--replica', type=str, default=os.path.join(SCRIPT_DIR_PATH, 'replica_dir'), help='Path to the replica directory.')
+    parser.add_argument('-l', '--logfile', type=str, default=os.path.join(SCRIPT_DIR_PATH, 'logfile.txt'), help='Path to logfile.')
     parser.add_argument('-t', '--timesleep', type=int, default=2, help='Sleep time in seconds (default: 2).')
 
     args = parser.parse_args()
@@ -56,8 +53,7 @@ def compare_files(file1, file2):
 
 
 # comparing source folder with replica folder
-def compare_folders(source,
-                    replica):
+def compare_folders(source, replica):
     files_source = os.listdir(source)
     files_replica = os.listdir(replica)
     if len(files_source) != len(files_replica):
@@ -67,8 +63,7 @@ def compare_folders(source,
         if file in files_replica:
             source_file_path = os.path.join(source, file)
             replica_file_path = os.path.join(replica, file)
-            if os.path.isfile(source_file_path) and os.path.isfile(replica_file_path) and not compare_files(
-                    source_file_path, replica_file_path):
+            if os.path.isfile(source_file_path) and os.path.isfile(replica_file_path) and not compare_files(source_file_path, replica_file_path):
                 return False
         else:
             return False
@@ -145,8 +140,7 @@ def main():
 
             else:
                 logging.info("Source dir and replica are not matching...")
-                handle_directories(source,
-                                   replica)
+                handle_directories(source, replica)
             time.sleep(time_sleep)
             logging.info(f"Sleeped for {time_sleep} seconds. Checking directories now..")
 
