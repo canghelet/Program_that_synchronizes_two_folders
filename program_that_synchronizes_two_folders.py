@@ -7,7 +7,6 @@ import sys
 import time
 
 
-
 SCRIPT_DIR_PATH = os.path.dirname(os.path.abspath(__file__))
 print(f"SCRIPT DIRE PATH = {SCRIPT_DIR_PATH}")
 
